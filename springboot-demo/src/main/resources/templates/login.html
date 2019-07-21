@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html; charset=UTF-8"/>
+<title>登录界面</title>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>  
+</head>
+<style type="text/css">
+body {
+padding-top:50px;
+}
+.starter-template {
+padding:40px, 15px;
+text-algin: center;
+}
+</style>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Spring Security 演示</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a th:href="@{/}">首页</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="starter-template">
+			<p th:if="${param.logout}" class="bg-danger">已注销成功</p>
+			<p th:if="${param.error}" class="bg-danger">有错误，请重试</p>
+			<h2>请使用账号密码登录</h2>
+			<form class="form" th:action="@{/authentication/form}" action="/login" method="post">
+				<div class="form-group row">
+					<label class="col-sm-1" for="username">账号:</label>
+					<input type="text" class="form-control col-sm-10" name="username" style="width:500px;" value="" placeholder="账号"/>
+				</div>
+				<div class="form-group row">
+					<label for="password" class="col-sm-1">密码</label>
+					<input type="password" class="form-control col-sm-10" style="width:500px;" name="password" value="" placeholder="密码"/>
+				</div>
+				<div class="form-group row">
+					<label class=" col-sm-1" for="imageCode">验证码</label>
+					<input type="text" class="form-control col-sm-3" style="width:200px;" name="imageCode" value="" placeholder="验证码"/>
+					<img class="col-sm-2" th:src="@{/code/image(width=67,height=20)}"/>
+				</div>
+				<input id="login" type="submit" value="log in" class="btn btn-primary"/>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
